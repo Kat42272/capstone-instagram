@@ -22,6 +22,6 @@ def profile_view(request):
             )
             if new_user:
                 login(request, new_user)
-                return HttpResponseRedirect(reverse("homepage"))
+                return HttpResponseRedirect(reverse("profilepage"))
     form = forms.AddProfileForm()
-    return render(request, 'profile.html', {'form': form})
+    return render(request, 'generic.html', {'form': form})

@@ -4,4 +4,4 @@ from . import models
 class AddProfileForm(forms.ModelForm):
     class Meta:
         model = models.InstaProfileModel
-        fields = '__all__'
+        fields = ['username', 'displayname', 'bio', 'url', 'picture']
