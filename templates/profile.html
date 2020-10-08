@@ -1,8 +1,12 @@
-{% comment %} {% extends 'base.html' %}
+ {% extends 'base.html' %}
 
 {% block content %}
 
-{{ displayname }}
-{{ username }}
-{{ picture }}
-{% endblock %} {% endcomment %}
+<ul>
+    <li>Username: {{user.username}}</li>
+    <li>Displayname: {{user.displayname}}</li>
+    <li>Bio: {{user.bio}}</li>
+    <img src="\{{user.picture}}" width="300px" height="200px">
+</ul>
+
+{% endblock %} 

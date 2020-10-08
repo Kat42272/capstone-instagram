@@ -9,19 +9,20 @@ def index_view(request):
 
 
 @login_required
-def profile_view(request):
+def edit_profile_view(request):
     if request.method == "POST":
-        form = forms.AddProfileForm(request.POST)
+        login_user= models.InstaProfileModel.objects.get(username=request.user)
+        form = forms.AddProfileForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
-            new_user = models.InstaProfileModel.objects.create(
-                displayname = data['displayname'],
-                bio = data['bio'],
-                url = data['url'],
-                picture = data['picture'],
-            )
-            if new_user:
-                login(request, new_user)
-                return HttpResponseRedirect(reverse("profilepage"))
+            print(data)
+            login_user.bio= data["bio"]
+            login_user.picture = data["picture"]
+            login_user.save()
+            return HttpResponseRedirect(reverse("profilepage"))
     form = forms.AddProfileForm()
     return render(request, 'generic.html', {'form': form})
+
+
+def profile_view(request):
+    return render(request, 'profile.html')
