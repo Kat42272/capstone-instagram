@@ -1,4 +1,6 @@
-TEAM SE-OCT-GARNET (Albina Tileubergen-Thomas, Chris McAfee, "Kathryn Anderson, Reggy Tjitradi)
+<!-- Still need to be updated closer to finished app to be a clear readme including dependencies for Photogram, etc. -->
+
+TEAM SE-OCT-GARNET (Albina Tileubergen-Thomas, Chris McAfee, Kathryn Anderson, Reggy Tjitradi)
 
 PHOTOGRAM instragram in a Django way
 
