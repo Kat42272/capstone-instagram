@@ -4,25 +4,29 @@ from . import forms
 from . import models
 
 
+
 # Create your views here.
 def index_view(request):
     return render(request, 'index.html')
 
 
 @login_required
-def profile_view(request):
-    if request.method == "POST":
-        form = forms.AddProfileForm(request.POST)
+def edit_profile_view(request):
+    if request.method == 'POST':
+        login_user = models.InstaProfileModel.objects.get(username=request.user)
+        form = forms.AddProfileForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
-            new_user = models.InstaProfileModel.objects.create(
-                displayname=data['displayname'],
-                bio=data['bio'],
-                url=data['url'],
-                picture=data['picture'],
-            )
-            if new_user:
-                login(request, new_user)
-                return HttpResponseRedirect(reverse("profilepage"))
+            print(data)
+            login_user.bio= data['bio']
+            login_user.email= data['email']
+            login_user.phone_number= data['phone_number']
+            login_user.picture = data['picture']
+            login_user.save()
+            return HttpResponseRedirect(reverse('profilepage'))
     form = forms.AddProfileForm()
     return render(request, 'generic.html', {'form': form})
+
+
+def profile_view(request):
+    return render(request, 'profile.html')

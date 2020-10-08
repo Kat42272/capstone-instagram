@@ -1,1 +1,12 @@
-{% comment %} {% extends 'base.html' %} {% block content %} {{ displayname }} {{ username }} {{ picture }} {% endblock %} {% endcomment %} test from reggy
+{% extends 'base.html' %} {% block content %}
+
+<ul>
+    <li>Username: {{user.username}}</li>
+    <li>Displayname: {{user.displayname}}</li>
+    <li>Bio: {{user.bio}}</li>
+    <li>Email: {{user.email}}</li>
+    <li>Phone: {{user.phone_number}}</li>
+    <img src="\{{user.picture}}" width="200px" height="100px">
+</ul>
+
+{% endblock %}

@@ -35,7 +35,7 @@ def signup_view(request):
             )
             if signup_user:
                 login(request, signup_user)
-                return HttpResponseRedirect(reverse("profilepage"))
+                return HttpResponseRedirect(reverse("loginpage"))
     form = forms.SignupForm()
     return render(request, 'signup.html', {'form': form})
 
