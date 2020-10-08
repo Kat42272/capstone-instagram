@@ -2,7 +2,8 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello Instagram!</title>
@@ -10,92 +11,85 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  </head>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item">
+</head>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item">
    {% load static %}
       <img src="{% static 'img/insta.png' %}" width="64" height="94">
-    </a> 
-
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
     </a>
-  </div>
 
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item" href="{% url 'homepage' %}">
-      <i class="large material-icons">home</i>
-
-        HOME
-      </a>
-
-      <a class="navbar-item">
-      <i class="large material-icons">notifications_active</i>
-        NOTIFICATIONS
-      </a>
-
-      <a class="navbar-item" href="{% url 'profilepage' %}">
-      <i class="large material-icons">face</i>
-        PROFILE
-      </a>
-
-
-       <a class="navbar-item">
-      <i class="large material-icons">message</i>
-
-        MESSAGE
-      </a>
-
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-      <i class="large material-icons">settings</i>
-
-          SETTINGS
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
         </a>
+    </div>
 
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="{% url 'homepage' %}">
+                <i class="large material-icons">home</i> HOME
+            </a>
+
+            <a class="navbar-item">
+                <i class="large material-icons">notifications_active</i> NOTIFICATIONS
+            </a>
+
+            <a class="navbar-item" href="{% url 'profilepage' %}">
+                <i class="large material-icons">face</i> PROFILE
+            </a>
+
+
+            <a class="navbar-item">
+                <i class="large material-icons">message</i> MESSAGE
+            </a>
+
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    <i class="large material-icons">settings</i> SETTINGS
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item">
             About
           </a>
-          <a class="navbar-item">
+                    <a class="navbar-item">
             Privacy
           </a>
-          <a class="navbar-item">
+                    <a class="navbar-item">
             Contact
           </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
+                    <hr class="navbar-divider">
+                    <a class="navbar-item">
             Help
           </a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-info" href="{% url 'logoutpage' %}">
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-info" href="{% url 'logoutpage' %}">
             LOGOUT
           </a>
-          
+
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </nav>
-  <section class="section">
+<section class="section">
     <div class="container">
-  <body>
- 
-      {% block content %}
-    {% endblock %}
-        
+
+        <body>
+
+            {% block content %} {% endblock %}
+
     </div>
-  </section>
-  </body>
+</section>
+</body>
+
 </html>
