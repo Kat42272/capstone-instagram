@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 from django.contrib.auth import authenticate, login, logout
 from . import forms
 from instagram.models import InstaProfileModel
@@ -40,8 +40,6 @@ def signup_view(request):
     return render(request, 'signup.html', {'form': form})
 
 
-
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("loginpage"))
-
