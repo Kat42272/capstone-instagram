@@ -1,8 +1,43 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+
 
 <p>Is Authenticated..? {{ user.is_authenticated }} <---> {{ user.username }}<p>
 
+    {% for post in posts %}
+
+    <div class="card" style="width: 24rem; border: 1px solid palevioletred">
+        <img class="card-img-top" src="\{{post.picture}}" style="border: 1px solid #f7bb97;">
+        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="card-body">
+            <span class="card-text" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.author }}</span>  
+            <span>{{ post.caption }}</span>
+            <p class="card-text">{{ post.date_created | timesince }} ago</p>
+          <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+        </div>
+      </div>
+<br><br>
+
+
+
+
+
+
+
+
+
+    <!-- {% if post.author == request.user %}
+        <figure class="image is-48x48" >
+          <img class="is-rounded" src="\{{user.picture}}" style="border: 1px solid #f7bb97; width: 48px; height: 48px;">
+        </figure>
+    {% endif %}
+        <p>{{ post.caption }} ---- {{ post.author }}</p>
+        <p>{{ post.date_created | timesince }} ago</p>
+        <br>
+        <hr>
+    -->
+
+    {% endfor %}
 
 {% endblock %}
