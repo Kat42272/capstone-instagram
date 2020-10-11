@@ -1,13 +1,89 @@
-{% comment %} {% extends 'base.html' %}
-
+{% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-{{ displayname }}
-{{ username }}
-{{ picture }}
-{% endblock %} {% endcomment %}
+<div class="container">
+    <article class="media">
+        <div class="media-left">
+            <figure class="image is-200x200">
+                <img class="is-rounded" src="\{{user.picture}}" style="border: 1px solid #f7bb97; width:200px; height: 200px;">
+             </figure>
+        </div>
+
+        <div class="media-content">
+            <br>
+            <div class="content">
+            <h2 class="title is-3" style="font-family: cursive;">{{user.username}}</h2>
+            <h3 class="subtitle is-3">{{user.bio}}</h3>
+            <a class="button btn-sm btn-danger" href="{% url 'edit_profilepage' %}">
+                Edit profile
+               </a>
+            </div>
+
+    <nav class="level" style="font-family: fantasy;">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="subtitle is-3">posts</p>
+            <p class="subtitle">0</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="subtitle is-3">following</p>
+            <p class="subtitle">0</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="subtitle is-3">followers</p>
+            <p class="subtitle">0</p>
+          </div>
+        </div>
+      </nav>
+    </div>
+</article>
+
+<br>
+<div class="tabs is-centered is-boxed is-small">
+    <ul>
+      <li class="is-active">
+        <a>
+          <span class="icon is-small"><i class="small material-icons">photo_camera</i></span>
+          <span>Posts</span>
+        </a>
+      </li>
+      <li>
+        <a>
+          <span class="icon is-small"><i class="small material-icons">live_tv</i></span>
+          <span>IGTV</span>
+        </a>
+      </li>
+      <li>
+        <a>
+          <span class="icon is-small"><i class="small material-icons">save</i></span>
+          <span>Saved</span>
+        </a>
+      </li>
+      <li>
+        <a>
+          <span class="icon is-small"><i class="small material-icons">person_pin_circle</i></span>
+          <span>Tagged</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 
 
 
 
-<!-- This is a comment from me to you -->
+<!-- <ul>
+    <li>Username: {{user.username}}</li>
+    <li>Displayname: {{user.displayname}}</li>
+    <li>Bio: {{user.bio}}</li>
+    <li>Email: {{user.email}}</li>
+    <li>Phone: {{user.phone}}</li>
+    <img src="\{{user.picture}}" width="200px" height="100px">
+</ul> -->
+</div>
+</div>
+{% endblock %} 
