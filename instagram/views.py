@@ -2,10 +2,12 @@ from django.shortcuts import render, HttpResponseRedirect, reverse
 from django.contrib.auth.decorators import login_required
 from . import forms 
 from . import models
+from instapost.models import PostModel
 
 # Create your views here.
 def index_view(request):
-    return render(request, 'index.html')
+    posts =  PostModel.objects.all()
+    return render(request, 'index.html', {'posts': posts})
 
 
 @login_required
@@ -16,12 +18,15 @@ def edit_profile_view(request):
         if form.is_valid():
             data = form.cleaned_data
             print(data)
+            print(request.FILES)
             login_user.bio= data["bio"]
-            login_user.picture = data["picture"]
+            login_user.email= data["email"]
+            login_user.phone = data["phone"]
+            login_user.picture= data["picture"]
             login_user.save()
             return HttpResponseRedirect(reverse("profilepage"))
     form = forms.AddProfileForm()
-    return render(request, 'generic.html', {'form': form})
+    return render(request, 'edit_profile.html', {'form': form})
 
 
 def profile_view(request):
