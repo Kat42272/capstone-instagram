@@ -10,18 +10,18 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('instapost', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='PostModel',
+            name='NotificationModel',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date_created', models.DateTimeField(auto_now_add=True)),
-                ('caption', models.TextField(blank=True, max_length=70, null=True)),
-                ('picture', models.ImageField(blank=True, null=True, upload_to='static/photo_upload/', verbose_name='picture')),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='author_post', to=settings.AUTH_USER_MODEL)),
+                ('time_posted', models.DateTimeField(blank=True, default=None, null=True)),
+                ('instapost', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='instapost.postmodel')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
     ]
