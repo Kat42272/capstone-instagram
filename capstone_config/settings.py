@@ -40,11 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'instagram',
-    'authentication', 
+    'authentication',
     'notification',
-    'comments', 
+    'comments',
     'instapost'
-    
 ]
 
 MIDDLEWARE = [
