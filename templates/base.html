@@ -13,9 +13,9 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   {% if request.user.is_authenticated %}
-  <nav class="navbar" role="navigation" aria-label="main navigation" style="padding-top: 20px; background: linear-gradient(to bottom, #dd5e89,  #f7bb97);">
+  <nav class="navbar" role="navigation" aria-label="main navigation" style="padding-top: 20px; background: linear-gradient(#93a5cf, #e4efe9);">
       <div class="navbar-item">
-         <h2 style="font-family: Apple Chancery; text-shadow: 2px 2px lightblue; font-weight: bold; padding-left: 30px;">PHOTOGRAM</h2>
+         <h2 style="font-family: Apple Chancery; text-shadow: 2px 2px lightblue; font-size: 40px; font-weight: bold; padding-left: 30px;">PHOTOGRAM</h2>
       </div>
   
     <div class="navbar-end">
@@ -29,7 +29,7 @@
   </div>
 
 
-  <div id="navbarBasicExample" class="navbar-menu">
+  <div id="navbarBasicExample" class="navbar-menu" style="font-size: 18px; font-weight: bold;">
     <div class="navbar-start">
       <a class="navbar-item" href="{% url 'homepage' %}">
       <i class="large material-icons">home</i>
@@ -52,14 +52,9 @@
         <a class="navbar-link">
               <img class="circle" src="\{{user.picture}}" style="border: 1px solid #f7bb97;">
         </a>
-           
-         {% comment %} {% load static %}
-         <img src="{% static 'img/alba.png' %}" class="collection-item avatar circle"> {% endcomment %}
-      {% comment %} <i class="large material-icons">face</i>
-        PROFILE {% endcomment %}
 
         <div class="navbar-dropdown">
-          <a class="navbar-item" href="{% url 'profilepage' %}">
+          <a class="navbar-item" href="{% url 'profilepage' request.user.username %}">
             Profile
           </a>
           <a class="navbar-item" href="{% url 'edit_profilepage' %}">
@@ -78,14 +73,10 @@
   {% endif %}
 </nav>
   <body>
-   {% comment %} <img src="{% static 'img/flash.gif' %}"> {% endcomment %}
    <section class="section">
-    {% comment %} <div class="container">  {% endcomment %}
  
       {% block content %}
     {% endblock %}
-        
-  {% comment %} </div> {% endcomment %}
   </section>
   </body>
 </html>
