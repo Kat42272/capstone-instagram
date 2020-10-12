@@ -21,3 +21,19 @@ def add_post_view(request):
     return render(request, 'generic.html', {'form': form})
 
 
+def like_view(request, likes_id):
+    print(likes_id)
+    post = PostModel.objects.get(id=likes_id)
+    post.likes = post.likes + 1
+    post.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def dislike_view(request, dislikes_id):
+    print(dislikes_id)
+    post = PostModel.objects.get(id=dislikes_id)
+    post.dislikes = post.dislikes - 1
+    post.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+

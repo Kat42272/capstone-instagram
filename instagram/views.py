@@ -5,10 +5,9 @@ from . import models
 from instapost.models import PostModel
 
 
-
 # Create your views here.
 def index_view(request):
-    posts =  PostModel.objects.all()
+    posts = PostModel.objects.all().order_by('-date_created')
     return render(request, 'index.html', {'posts': posts})
 
 
@@ -31,5 +30,8 @@ def edit_profile_view(request):
     return render(request, 'edit_profile.html', {'form': form})
 
 
-def profile_view(request):
-    return render(request, 'profile.html')
+def profile_view(request, user_name):
+    user_profile = models.InstaProfileModel.objects.get(username=user_name)
+    posts = PostModel.objects.filter(author__username=user_name).order_by('-date_created')
+    total_posts = posts.count()
+    return render(request, 'profile.html', {'posts': posts, 'total_posts': total_posts, 'user_profile': user_profile})
