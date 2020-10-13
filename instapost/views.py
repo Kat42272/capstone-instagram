@@ -18,7 +18,7 @@ def add_post_view(request):
             if new_post:
                 return HttpResponseRedirect(reverse("homepage"))
     form = forms.AddPostForm()
-    return render(request, 'generic.html', {'form': form})
+    return render(request, 'add_post.html', {'form': form})
 
 
 def like_view(request, likes_id):
