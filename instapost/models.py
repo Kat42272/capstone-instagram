@@ -1,6 +1,7 @@
 from django.db import models
 from instagram.models import InstaProfileModel
 
+
 class PostModel(models.Model):
     author = models.ForeignKey(InstaProfileModel, on_delete=models.CASCADE, related_name="author_post")
     date_created = models.DateTimeField(auto_now_add=True)

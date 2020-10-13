@@ -20,10 +20,10 @@ def edit_profile_view(request):
             data = form.cleaned_data
             print(data)
             print(request.FILES)
-            login_user.bio= data["bio"]
-            login_user.email= data["email"]
+            login_user.bio = data["bio"]
+            login_user.email = data["email"]
             login_user.phone = data["phone"]
-            login_user.picture= data["picture"]
+            login_user.picture = data["picture"]
             login_user.save()
             return HttpResponseRedirect(reverse('profilepage'))
     form = forms.AddProfileForm()
