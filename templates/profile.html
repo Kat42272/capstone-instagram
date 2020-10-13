@@ -1,12 +1,91 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-<ul>
-    <li>Username: {{user.username}}</li>
-    <li>Displayname: {{user.displayname}}</li>
-    <li>Bio: {{user.bio}}</li>
-    <li>Email: {{user.email}}</li>
-    <li>Phone: {{user.phone_number}}</li>
-    <img src="\{{user.picture}}" width="200px" height="100px">
-</ul>
+<div class="container">
+    <article class="media">
+        <div class="media-left">
+            <figure class="image is-200x200">
+                <img class="is-rounded" src="\{{user_profile.picture}}" style="border: 1px solid #f7bb97; width:200px; height: 200px;">
+            </figure>
+        </div>
 
+        <div class="media-content">
+            <br>
+            <div class="content">
+                <h2 class="title is-3" style="font-family: cursive;">{{user_profile.username}}</h2>
+                <h4 class="subtitle">{{user_profile.bio}}</h4>
+                <a class="button btn-sm btn-danger" href="{% url 'edit_profilepage' %}">
+                Edit profile
+            </a>
+            </div>
+
+            <nav class="level" style="font-family: fantasy;">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="subtitle is-2">posts</p>
+                        <p class="subtitle">{{ total_posts }}</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="subtitle is-2">following</p>
+                        <p class="subtitle">0</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="subtitle is-2">followers</p>
+                        <p class="subtitle">0</p>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </article>
+
+    <br>
+    <div class="tabs is-centered is-boxed is-small">
+        <ul>
+            <li class="is-active">
+                <a>
+                    <span class="icon is-small"><i class="small material-icons">photo_camera</i></span>
+                    <span>Posts</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span class="icon is-small"><i class="small material-icons">live_tv</i></span>
+                    <span>IGTV</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span class="icon is-small"><i class="small material-icons">save</i></span>
+                    <span>Saved</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <span class="icon is-small"><i class="small material-icons">person_pin_circle</i></span>
+                    <span>Tagged</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <br><br> {% for post in posts %}
+
+    <div class="container">
+        <div class="col">
+            <img class="rounded float-left" src="\{{post.picture}}" style="border: 2px solid black; width: 350px; height: 300px; margin-left: 60px; margin-bottom: 50px;">
+
+        </div>
+    </div>
+
+    {% endfor %}
+
+
+
+
+
+</div>
+</div>
 {% endblock %}
