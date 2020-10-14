@@ -6,7 +6,7 @@ from . import forms
 @login_required
 def add_post_view(request):
     if request.method == "POST":
-        form = forms.AddPostForm(request.POST, request.FILES)
+        form = forms.EditPostForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
             print(data)
@@ -17,7 +17,7 @@ def add_post_view(request):
             )
             if new_post:
                 return HttpResponseRedirect(reverse("homepage"))
-    form = forms.AddPostForm()
+    form = forms.EditPostForm()
     return render(request, 'add_post.html', {'form': form})
 
 
