@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 from django.contrib.auth import authenticate, login, logout
 from . import forms
-from instagram.models import InstaProfileModel
+from photogram.models import InstaProfileModel
 from django.contrib.auth.decorators import login_required
 
 

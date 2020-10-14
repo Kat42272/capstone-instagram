@@ -1,6 +1,6 @@
 from django.db import models
 
-from instagram.models import InstaProfileModel
+from photogram.models import InstaProfileModel
 from instapost.models import PostModel
 
 # Create your models here.

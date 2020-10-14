@@ -1,5 +1,6 @@
 from django.db import models
-from instagram.models import InstaProfileModel
+from photogram.models import InstaProfileModel
+
 
 # Create your models here.
 class CommentModel(models.Model):
