@@ -14,15 +14,20 @@
             <div class="media-content">
               <br>
               <div class="content">
+              {% if user_profile.username == request.user.username %}
                 <a href="{% url 'addpost' %}"><i class="large material-icons" style="font-size: 50px; color: rgb(100, 131, 226); position: absolute;
                   left: 12%; top: 35%;
                   ">camera_alt</i></a>
+                  {% endif %}
 
             <h2 class="title is-3" style="font-family: cursive;">{{user_profile.username}}</h2>
             <h4 class="subtitle">{{user_profile.bio}}</h4>
+
+            {% if user_profile.username == request.user.username %}
             <a class="button btn-sm btn-danger" href="{% url 'edit_profilepage' user.username %}">
                 Edit profile
                </a>
+            {% endif %}
             </div>
 
     <nav class="level" style="font-family: fantasy;">
