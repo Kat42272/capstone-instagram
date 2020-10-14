@@ -47,10 +47,12 @@ def profile_view(request, user_name):
     posts = PostModel.objects.filter(author__username=user_name).order_by('-date_created')
     total_posts = posts.count()
     following_count = user_profile.following.all().count()
+    follower_count = user_profile.follower.all().count()
     return render(request, 'profile.html', {
         'posts': posts, 'total_posts': total_posts,
-        'user_profile': user_profile, 
-        'following_count': following_count
+        'user_profile': user_profile,
+        'following_count': following_count,
+        'follower_count': follower_count
         })
 
 
@@ -67,4 +69,12 @@ class UnfollowingView(LoginRequiredMixin, TemplateView):
     def get(self, request, user_name):
         user = models.InstaProfileModel.objects.get(username=user_name)
         request.user.following.remove(user)
+        return HttpResponseRedirect(reverse('profilepage', args=[user.username]))
+
+
+class FollowerView(LoginRequiredMixin, TemplateView):
+
+    def get(self, request, user_name):
+        user = models.InstaProfileModel.objects.get(username=user_name)
+        request.user.follower.add(user)
         return HttpResponseRedirect(reverse('profilepage', args=[user.username]))
