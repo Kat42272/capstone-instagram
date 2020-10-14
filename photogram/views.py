@@ -42,4 +42,9 @@ def profile_view(request, user_name):
     user_profile = models.InstaProfileModel.objects.get(username=user_name)
     posts = PostModel.objects.filter(author__username=user_name).order_by('-date_created')
     total_posts = posts.count()
-    return render(request, 'profile.html', {'posts': posts, 'total_posts': total_posts, 'user_profile': user_profile})
+    following_count = user_profile.following.all().count()
+    return render(request, 'profile.html', {
+        'posts': posts, 'total_posts': total_posts,
+        'user_profile': user_profile, 
+        'following_count': following_count
+        })
