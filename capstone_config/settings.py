@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'instagram',
+    'photogram',
     'authentication',
     'notification',
     'comments',
@@ -134,4 +134,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
 # MEDIA_ROOT = [BASE_DIR / 'media']
 
 LOGIN_URL = "/login/"
-AUTH_USER_MODEL = 'instagram.InstaProfileModel'
+AUTH_USER_MODEL = 'photogram.InstaProfileModel'

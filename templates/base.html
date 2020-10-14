@@ -26,6 +26,13 @@
                     <a class="navbar-item" href="{% url 'homepage' %}" class="nav_links">
                         <i class="large material-icons">home</i>
 
+<<<<<<< HEAD
+=======
+        <div id="navbarBasicExample" class="navbar-menu" style="font-size: 18px; font-weight: bold;">
+            <div class="navbar-start">
+                <a class="navbar-item" href="{% url 'homepage' %}" class="nav_links">
+                    <i class="large material-icons">home</i>
+>>>>>>> b5523938127c4b088c611e229dee2789971b373f
 
                         <div id="navbarBasicExample" class="navbar-menu" style="font-size: 18px; font-weight: bold;">
                             <div class="navbar-start">
@@ -44,6 +51,7 @@
                                                 <img class="circle" src="\{{user.picture}}" style="border: 1px solid #f7bb97;">
                                             </a>
 
+<<<<<<< HEAD
                                             <div class="navbar-dropdown">
                                                 <a class="navbar-item" href="{% url 'profilepage' request.user.username %}">
             Profile
@@ -68,6 +76,31 @@
             </a>
 
             {% endif %}
+=======
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="{% url 'profilepage' request.user.username %}">
+            Profile
+        </a>
+                                <a class="navbar-item" href="{% url 'edit_profilepage' user.username %}">
+            Settings
+        </a>
+                                <hr class="navbar-divider">
+                                <a class="navbar-item" href="{% url 'logoutpage' %}">
+            Log Out
+        </a>
+                            </div>
+                        </div>
+            </div>
+
+        </div>
+    </div>
+    {% else %}
+    <a class="navbar-item" href="{% url 'loginpage' %}" class="nav_links">
+        <i class="large material-icons">home</i> login
+    </a>
+
+    {% endif %}
+>>>>>>> b5523938127c4b088c611e229dee2789971b373f
 </nav>
 
 <body>
