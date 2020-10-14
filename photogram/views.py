@@ -1,8 +1,12 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse
-from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
+
 from . import forms
 from . import models
 from instapost.models import PostModel
+
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -48,3 +52,19 @@ def profile_view(request, user_name):
         'user_profile': user_profile, 
         'following_count': following_count
         })
+
+
+class FollowingView(LoginRequiredMixin, TemplateView):
+
+    def get(self, request, user_name):
+        user = models.InstaProfileModel.objects.get(username=user_name)
+        request.user.following.add(user)
+        return HttpResponseRedirect(reverse('profilepage'))
+
+
+class UnfollowingView(LoginRequiredMixin, TemplateView):
+
+    def get(self, request, user_name):
+        user = models.InstaProfileModel.objects.get(username=user_name)
+        request.user.following.remove(user)
+        return HttpResponseRedirect(reverse('profilepage'))
