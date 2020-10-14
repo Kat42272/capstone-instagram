@@ -32,8 +32,7 @@
         <div id="navbarBasicExample" class="navbar-menu" style="font-size: 18px; font-weight: bold;">
             <div class="navbar-start">
                 <a class="navbar-item" href="{% url 'homepage' %}">
-                    <i class="large material-icons">home</i>
-
+                    <i class="large material-icons">home</i> HOME
                     <a class="navbar-item">
                         <i class="large material-icons">message</i> MESSAGE
 
@@ -47,29 +46,24 @@
                                 <img class="circle" src="\{{user.picture}}" style="border: 1px solid #f7bb97;">
                             </a>
 
-                            <div class="navbar-item has-dropdown is-hoverable">
-                                <a class="navbar-link">
-                                    <img class="circle" src="\{{user.picture}}" style="border: 1px solid #f7bb97;">
-                                </a>
-
-                                <div class="navbar-dropdown">
-                                    <a class="navbar-item" href="{% url 'profilepage' request.user.username %}">
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="{% url 'profilepage' request.user.username %}">
             Profile
         </a>
-                                    <a class="navbar-item" href="{% url 'edit_profilepage' %}">
+                                <a class="navbar-item" href="{% url 'edit_profilepage' %}">
             Settings
         </a>
-                                    <hr class="navbar-divider">
-                                    <a class="navbar-item" href="{% url 'logoutpage' %}">
+                                <hr class="navbar-divider">
+                                <a class="navbar-item" href="{% url 'logoutpage' %}">
             Log Out
         </a>
-                                </div>
                             </div>
                         </div>
-
             </div>
+
         </div>
-        {% endif %}
+    </div>
+    {% endif %}
 </nav>
 
 <body>
