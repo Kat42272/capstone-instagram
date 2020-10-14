@@ -7,8 +7,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello Photogram!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <link rel="stylesheet" href="{% static " css/style.css/ " %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"> {% load static %}
+    <link rel="stylesheet" href="{% static " /css/style.css/ " %}" type="text/css">
     <link rel="stylesheet" href="{% static " css/blog.css/ " %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -21,56 +21,65 @@
     <div class="navbar-end">
         <div class="navbar-brand">
 
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
+            <div id="navbarBasicExample" class="navbar-menu" style="font-size: 18px; font-weight: bold;">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="{% url 'homepage' %}" class="nav_links">
+                        <i class="large material-icons">home</i>
 
 
-        <div id="navbarBasicExample" class="navbar-menu" style="font-size: 18px; font-weight: bold;">
-            <div class="navbar-start">
-                <a class="navbar-item" href="{% url 'homepage' %}">
-                    <i class="large material-icons">home</i> HOME
-                    <a class="navbar-item">
-                        <i class="large material-icons">message</i> MESSAGE
+                        <div id="navbarBasicExample" class="navbar-menu" style="font-size: 18px; font-weight: bold;">
+                            <div class="navbar-start">
+                                <a class="navbar-item" href="{% url 'homepage' %}">
+                                    <i class="large material-icons">home</i> HOME
+                                    <a class="navbar-item">
+                                        <i class="large material-icons">message</i> MESSAGE
 
 
-                        <a class="navbar-item">
-                            <i class="large material-icons">notifications_active</i> NOTIFICATIONS
-                        </a>
+                                        <a class="navbar-item">
+                                            <i class="large material-icons">notifications_active</i> NOTIFICATIONS
+                                        </a>
 
-                        <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link">
-                                <img class="circle" src="\{{user.picture}}" style="border: 1px solid #f7bb97;">
-                            </a>
+                                        <div class="navbar-item has-dropdown is-hoverable">
+                                            <a class="navbar-link">
+                                                <img class="circle" src="\{{user.picture}}" style="border: 1px solid #f7bb97;">
+                                            </a>
 
-                            <div class="navbar-dropdown">
-                                <a class="navbar-item" href="{% url 'profilepage' request.user.username %}">
+                                            <div class="navbar-dropdown">
+                                                <a class="navbar-item" href="{% url 'profilepage' request.user.username %}">
             Profile
         </a>
-                                <a class="navbar-item" href="{% url 'edit_profilepage' %}">
+                                                <a class="navbar-item" href="{% url 'edit_profilepage' user.username %}">
             Settings
         </a>
-                                <hr class="navbar-divider">
-                                <a class="navbar-item" href="{% url 'logoutpage' %}">
+                                                <hr class="navbar-divider">
+                                                <a class="navbar-item" href="{% url 'logoutpage' %}">
             Log Out
         </a>
+                                            </div>
+                                        </div>
                             </div>
-                        </div>
-            </div>
 
-        </div>
-    </div>
-    {% endif %}
+                        </div>
+                </div>
+            </div>
+            {% else %}
+            <a class="navbar-item" href="{% url 'loginpage' %}" class="nav_links">
+                <i class="large material-icons">home</i> login
+            </a>
+
+            {% endif %}
 </nav>
 
 <body>
-    <section class="section">
 
-        {% block content %} {% endblock %}
-    </section>
+    <div>
+
+        <section class="section">
+
+
+            {% block content %} {% endblock %}
+        </section>
+    </div>
 </body>
 
 </html>
