@@ -4,7 +4,7 @@
 
 
 
-
+{% if request.user.is_authenticated %}
 
     {% for post in posts %}
 
@@ -13,7 +13,7 @@ align-items: center;
 justify-content: center;
 height: 80vh;">
 
-    <div class="card" style="width: 26rem; height: 35rem; border: 1px dotted violet;">
+    <div class="card" style="width: 22rem; height: 35rem; border: 1px dotted violet;">
         <img class="card-img-top" src="\{{post.picture}}" style="border: 1px solid #ffaf7b; height: 60%;">
 
         <div class="card-body" style="background: linear-gradient(#93a5cf, #e4efe9);">
@@ -35,7 +35,7 @@ height: 80vh;">
     </div>
 <br>
             <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.total_likes}} likes</p>
-            <span class="card-text" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.author }}</span>  
+            <a class="card-text" href="{% url 'profilepage' post.author %}" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.author }}</a>  
             <span>{{ post.caption }}</span>
             <p class="card-text" style="font-family: cursive;">{{ post.date_created | timesince }} ago</p>
         </div>
@@ -46,5 +46,7 @@ height: 80vh;">
 
 
     {% endfor %}
+
+  {% endif %}
 
 {% endblock %}
