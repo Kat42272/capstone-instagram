@@ -59,7 +59,7 @@ class FollowingView(LoginRequiredMixin, TemplateView):
     def get(self, request, user_name):
         user = models.InstaProfileModel.objects.get(username=user_name)
         request.user.following.add(user)
-        return HttpResponseRedirect(reverse('profilepage'))
+        return HttpResponseRedirect(reverse('profilepage', args=[user.username]))
 
 
 class UnfollowingView(LoginRequiredMixin, TemplateView):
@@ -67,4 +67,4 @@ class UnfollowingView(LoginRequiredMixin, TemplateView):
     def get(self, request, user_name):
         user = models.InstaProfileModel.objects.get(username=user_name)
         request.user.following.remove(user)
-        return HttpResponseRedirect(reverse('profilepage'))
+        return HttpResponseRedirect(reverse('profilepage', args=[user.username]))
