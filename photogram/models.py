@@ -16,13 +16,9 @@ class InstaProfileModel(AbstractUser):
         upload_to='static/photo_upload/',
         blank=True, null=True, verbose_name='picture')
     email = models.EmailField(max_length=254)
+    # username = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15)
 
-    # @property
-    # def data_specific(self):
-    #     date_submit = self.submit_time
-    #     current_date = datetime.now(timezone.utc)
-    #     age_day = current_date - date_submit
-    #     return age_day.year
+   
 
 

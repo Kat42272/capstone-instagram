@@ -23,7 +23,21 @@
                 {% if user_profile.username == request.user.username %}
                 <a class="button btn-sm btn-danger" href="{% url 'edit_profilepage' user.username %}">
                 Edit profile
-               </a> {% endif %}
+               </a> 
+               {% endif %}
+
+               {% if user_profile.username != request.user.username and request.user.is_authenticated %}
+               {% if user_profile in following_list %}
+               <a class="button btn-sm btn-danger" href="{% url "unfollowing_profilepage" user_profile.username %}">
+                Unfollow
+               </a>
+               {% else %}
+               <a class="button btn-sm btn-danger" href="{% url "following_profilepage" user_profile.username %}">
+                Follow
+               </a>
+               {% endif %}
+            {% endif %}
+
             </div>
 
             <nav class="level" style="font-family: fantasy;">
@@ -36,7 +50,7 @@
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="subtitle is-2">following</p>
-                        <p class="subtitle">{{ following_count }}</p>
+                        <p class="subtitle">{{ user_profile.following.count }}</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
