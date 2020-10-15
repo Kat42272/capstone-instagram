@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from .models import PostModel
 from . import forms 
@@ -35,5 +35,11 @@ def dislike_view(request, dislikes_id):
     post.dislikes = post.dislikes - 1
     post.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
+def delete_view(request, post_id):
+    PostModel.objects.filter(id=post_id).delete()
+    return redirect('/')
 
 
