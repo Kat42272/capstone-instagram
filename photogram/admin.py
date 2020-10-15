@@ -3,7 +3,7 @@ from .models import InstaProfileModel
 
 
 class InstaProfileAdmin(admin.ModelAdmin):
-    list_display = ('picture',)
+    list_display = ('id', 'username')
 
 
 admin.site.register(InstaProfileModel, InstaProfileAdmin)
