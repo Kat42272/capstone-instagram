@@ -20,6 +20,7 @@ def edit_profile_view(request, user_name):
     user = models.InstaProfileModel.objects.get(username=user_name)
     if request.method == "POST":
         form = forms.AddProfileForm(request.POST, request.FILES)
+        breakpoint()
         if form.is_valid():
             data = form.cleaned_data
             print(data)
@@ -38,7 +39,7 @@ def edit_profile_view(request, user_name):
             "picture": user.picture
     }
 
-    form = forms.AddProfileForm()
+    form = forms.AddProfileForm(initial=data)
     return render(request, 'edit_profile.html', {'form': form})
 
 
