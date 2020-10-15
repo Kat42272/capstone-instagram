@@ -15,7 +15,7 @@
     <div class="row no-gutters">
         <div class="col-md-4 bg-info">
         {% load static %}
-        <img src="{% static 'img/catcat.gif' %}" class="card-img" style="height: 100%;">
+        <img src="{% static 'img/kitten.gif' %}" class="card-img" style="height: 100%;">
         </div>
     <div class="col-md-8">
         <div class="card-body">
@@ -89,102 +89,3 @@
 
 
 
-
-
-
-
-
-
-
-{% comment %} {% extends 'base.html' %}
-{% load static %}
-{% block content %}
-
-
-<div class="center" style="position: absolute;
-  left: 50%;
-  top: 60%;
-  transform: translate(-50%, -50%);
-  padding: 10px;">
-
-
-
-<div class="card text-center" style="width: 20rem; border: 1px solid green; background-color: lightblue;">
- {% load static %}
-  <img src="{% static 'img/selfie.gif' %}" class="card-img-top" alt="...">
-  <div class="card-body">
-    
-        <form enctype="multipart/form-data" action="" method="post">
-            {% csrf_token %}
-
-            <div class="field">
-                <label class="label">Bio</label>
-                <p class="control has-icons-left">
-                    {{ form.bio }}
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                    </span>
-                </p>
-            </div>
-
-            <div class="field">
-                <label class="label">URL</label>
-                <p class="control has-icons-left">
-                    {{ form.url }}
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                    </span>
-                </p>
-            </div>
-
-            <div class="field">
-                <label class="label">Email</label>
-                <p class="control has-icons-left">
-                    {{ form.email }}
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                    </span>
-                </p>
-            </div>
-            
-
-            <div class="field">
-                <label class="label">Phone number</label>
-                <p class="control has-icons-left">
-                    {{ form.phone}}
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                    </span>
-                </p>
-            </div>
-
-            <div class="field">
-                <label class="label">Upload Photo</label>
-                <p class="control has-icons-left">
-                    {{ form.picture }}
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                    </span>
-                </p>
-            </div>
-
-
-                 {% comment %} <a class="btn btn-info btn-sm" href="{% url 'loginpage' %}">
-                    GO BACK
-                   </a>  <span>OR</span>  {% endcomment %}
-                   {% comment %} <input class="btn btn-danger btn-sm" type="submit" value="SUBMIT"> 
-
-         </form> 
-
-
-  </div>
-  
-</div>
-</div
-
-
-
-
-
-
-{% endblock %} {% endcomment %} 

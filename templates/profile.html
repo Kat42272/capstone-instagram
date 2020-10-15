@@ -14,7 +14,7 @@
             <div class="content">
                 {% if user_profile.username == request.user.username %}
                 <a href="{% url 'addpost' %}"><i class="large material-icons" style="font-size: 50px; color: rgb(100, 131, 226); position: absolute;
-                  left: 14%; top: 35%;
+                  left: 13%; top: 38%;
                   ">camera_alt</i></a> {% endif %}
 
                 <h2 class="title is-3" style="font-family: cursive;">{{user_profile.username}}</h2>
@@ -57,7 +57,7 @@
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="subtitle is-2">followers</p>
-                        <p class="subtitle">{{ follower_count }}</p>
+                        <p class="subtitle">0</p>
                     </div>
                 </div>
             </nav>
@@ -107,18 +107,10 @@
   padding: 10px;
 ">
 
- <div class="card" style="width: 22rem; height: 35rem; border: 1px dotted violet;">
-    {% comment %} <div class="media-left">
-            <figure class="image is-200x200">
-                <img class="is-rounded" src="\{{user_profile.picture}}" style="border: 1px solid #f7bb97; width:200px; height: 200px;">
-            </figure>
-        </div> {% endcomment %}
+ <div class="card" style="width: 24rem; height: 35rem; border: 1px dotted violet;">
+ 
         <img class="card-img-top" src="\{{post.picture}}" style="border: 1px solid #ffaf7b; height: 60%;">
-        <!-- <video width="320" height="240" controls> -->
-        <!-- <source src="movie.mp4" type="video/mp4">
-          <source src="movie.ogg" type="video/ogg"> -->
-        <!-- <video width='320' height='240' controls><source src="{% static 'photo_upload/picture' type='mov' %}">Your browser does not support the video tag.</video>
-        </video> -->
+       
         <div class="card-body" style="background: linear-gradient(#93a5cf, #e4efe9);">
 
             <div class="container">
