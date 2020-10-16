@@ -58,10 +58,10 @@ def profile_view(request, user_name):
     if request.user.is_authenticated:
         following_list = request.user.following.all()
         # follower_list = request.user.follower.all()
-        follower_total = models.FollowerModel.objects.filter(follower=request.user).count()
+        # follower_total = models.FollowerModel.objects.filter(follower=request.user).count()
     else:
         following_list = []
-        follower_total = 0
+        # follower_total = 0
 
     # following_count = user_profile.following.all().count()
     # follower_count = request.user.follower.all().count()
@@ -69,7 +69,7 @@ def profile_view(request, user_name):
         'posts': posts, 'total_posts': total_posts,
         'user_profile': user_profile,
         'following_list': following_list,
-        'follower_total': follower_total
+        # 'follower_total': follower_total
         # 'follower_count': follower_count
         })
 
