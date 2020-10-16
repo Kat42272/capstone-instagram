@@ -21,20 +21,22 @@ def add_post_view(request):
     return render(request, 'add_post.html', {'form': form})
 
 
-def like_view(request, likes_id):
-    print(likes_id)
-    post = PostModel.objects.get(id=likes_id)
-    post.likes = post.likes + 1
-    post.save()
+def like_view(request, post_id):
+    print(post_id)
+    post = PostModel.objects.get(id=post_id)
+    
+    if post.like.filter(id=request.user.id).exists():
+        post.like.remove(request.user)
+        post.liked=False
+        post.save()
+    else:
+        post.like.add(request.user)
+        post.liked=True
+        post.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+   
 
 
-def dislike_view(request, dislikes_id):
-    print(dislikes_id)
-    post = PostModel.objects.get(id=dislikes_id)
-    post.dislikes = post.dislikes - 1
-    post.save()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 
