@@ -7,15 +7,16 @@ class PostModel(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     caption = models.TextField(max_length=70, blank=True, null=True)
     picture = models.ImageField(upload_to='static/post_upload/', blank=True, null=True, verbose_name='picture')
-    likes = models.IntegerField(default=0)
-    dislikes = models.IntegerField(default=0)
-    # likes = models.ManyToManyField("self", related_name='likes')
-    # archive = models.BooleanField(default=False)
+    like = models.ManyToManyField(InstaProfileModel, related_name='like')
+    liked =  models.BooleanField(default=False)
+    
 
     def __str__(self):
         return self.caption
 
-
     @property
     def total_likes(self):
-        return self.likes + self.dislikes
+        return self.like.count()
+
+
+   
