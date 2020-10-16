@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import InstaProfileModel, FollowerModel
+from .models import InstaProfileModel
 
 
 class InstaProfileAdmin(admin.ModelAdmin):
@@ -7,4 +7,3 @@ class InstaProfileAdmin(admin.ModelAdmin):
 
 
 admin.site.register(InstaProfileModel, InstaProfileAdmin)
-admin.site.register(FollowerModel)

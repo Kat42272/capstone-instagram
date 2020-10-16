@@ -18,5 +18,3 @@ class InstaProfileModel(AbstractUser):
     email = models.EmailField(max_length=254)
     # username = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15)
-
-
