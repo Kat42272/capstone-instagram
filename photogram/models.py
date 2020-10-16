@@ -11,14 +11,12 @@ class InstaProfileModel(AbstractUser):
     email = models.EmailField(max_length=254)
     phone = models.CharField(max_length=15)
     following = models.ManyToManyField("self", symmetrical=False)
-    # follower = models.ManyToManyField("self", symmetrical=False)
+    # follower = models.ManyToManyField("self", symmetrical=False, related_name="follower+")
     picture = models.ImageField(
         upload_to='static/photo_upload/',
         blank=True, null=True, verbose_name='picture')
     email = models.EmailField(max_length=254)
     # username = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15)
-
-   
 
 

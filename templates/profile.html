@@ -19,25 +19,16 @@
 
                 <h2 class="title is-3" style="font-family: cursive;">{{user_profile.username}}</h2>
                 <h4 class="subtitle">{{user_profile.bio}}</h4>
-                <br>
-
-                {% if user_profile.username == request.user.username %}
+                <br> {% if user_profile.username == request.user.username %}
                 <a class="button btn-sm btn-danger" href="{% url 'edit_profilepage' user.username %}">
                 Edit profile
-               </a> 
-               {% endif %}
-
-               {% if user_profile.username != request.user.username and request.user.is_authenticated %}
-               {% if user_profile in following_list %}
-               <a class="button btn-sm btn-danger" href="{% url "unfollowing_profilepage" user_profile.username %}">
+               </a> {% endif %} {% if user_profile.username != request.user.username and request.user.is_authenticated %} {% if user_profile in following_list %}
+                <a class="button btn-sm btn-danger" href="{% url 'unfollowing_profilepage' user_profile.username %}">
                 Unfollow
-               </a>
-               {% else %}
-               <a class="button btn-sm btn-danger" href="{% url "following_profilepage" user_profile.username %}">
+               </a> {% else %}
+                <a class="button btn-sm btn-danger" href="{% url 'following_profilepage' user_profile.username %}">
                 Follow
-               </a>
-               {% endif %}
-            {% endif %}
+               </a> {% endif %} {% endif %}
 
             </div>
 
@@ -57,7 +48,7 @@
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="subtitle is-2">followers</p>
-                        <p class="subtitle">0</p>
+                        <p class="subtitle">{{ follower_total }}</p>
                     </div>
                 </div>
             </nav>
@@ -94,12 +85,8 @@
         </ul>
     </div>
 
-    <br>
-    
-    
-    
-     {% for post in posts %}
-     
+    <br> {% for post in posts %}
+
 
     <div class="container" style="
   float: left;
@@ -107,48 +94,46 @@
   padding: 10px;
 ">
 
- <div class="card" style="width: 24rem; height: 35rem; border: 1px dotted violet;">
- 
-        <img class="card-img-top" src="\{{post.picture}}" style="border: 1px solid #ffaf7b; height: 60%;">
-       
-        <div class="card-body" style="background: linear-gradient(#93a5cf, #e4efe9);">
+        <div class="card" style="width: 24rem; height: 35rem; border: 1px dotted violet;">
 
-            <div class="container">
-                <div class="row">
-                {% if post.liked %}
-                    <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons" style="color:red;">favorite</i></a>
-                {% else %}
-                    <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons">favorite_border</i></a>
-                {% endif %}
-                    
-                    <a class="navbar-item">
-                        <i class="large material-icons">chat_bubble_outline</i>
-                    </a>
+            <img class="card-img-top" src="\{{post.picture}}" style="border: 1px solid #ffaf7b; height: 60%;">
 
-                    <a class="navbar-item">
-                        <i class="large material-icons">near_me</i>
-                    </a>
+            <div class="card-body" style="background: linear-gradient(#93a5cf, #e4efe9);">
 
-                    {% if user_profile.username == request.user.username %}
-                    <a class="navbar-item" href="{% url 'delete_page' post.id %}" style="color: red;">
-                        <i class="large material-icons">delete</i>
-                    </a>
-                    {% endif %}
+                <div class="container">
+                    <div class="row">
+                        {% if post.liked %}
+                        <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons" style="color:red;">favorite</i></a> {% else %}
+                        <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons">favorite_border</i></a> {% endif %}
 
+                        <a class="navbar-item">
+                            <i class="large material-icons">chat_bubble_outline</i>
+                        </a>
+
+                        <a class="navbar-item">
+                            <i class="large material-icons">near_me</i>
+                        </a>
+
+                        {% if user_profile.username == request.user.username %}
+                        <a class="navbar-item" href="{% url 'delete_page' post.id %}" style="color: red;">
+                            <i class="large material-icons">delete</i>
+                        </a>
+                        {% endif %}
+
+                    </div>
                 </div>
+                <br>
+                <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.total_likes}} likes</p>
+                <a class="card-text" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.author }}</a>
+                <span>{{ post.caption }}</span>
+                <p class="card-text" style="font-family: cursive;">{{ post.date_created | timesince }} ago</p>
             </div>
-            <br>
-            <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.total_likes}} likes</p>
-            <a class="card-text" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.author }}</a>
-            <span>{{ post.caption }}</span>
-            <p class="card-text" style="font-family: cursive;">{{ post.date_created | timesince }} ago</p>
         </div>
+
     </div>
-        
-    </div>
- 
-                      
-        
+
+
+
 
     {% endfor %}
 
