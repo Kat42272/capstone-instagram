@@ -62,6 +62,9 @@ def post_detail_view(request, post_id):
     return render(request, 'post_detail.html', {'form': form, 'post': post, 'all_comments': all_comments, 'new_comment': new_comment })
 
 
+def delete_comment_view(request, comment_id):
+    CommentModel.objects.filter(id=comment_id).delete()
+    return redirect('/')
 
 
 def delete_view(request, post_id):

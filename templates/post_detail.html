@@ -1,83 +1,75 @@
-{% extends 'base.html' %} 
-{% load static %} 
-{% block content %} 
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <style>
     .avatar {
-      vertical-align: middle;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      margin-top: 25px;
+        vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-top: 25px;
     }
-    </style>
+</style>
 
 <div class="container">
     <h3>Post detail</h3>
-<div class="row" style="border: 1px solid black;">
-    <div class="col-md-1" ></div>
-    <div class="col-md-5" >
-      
-        <div class="container" style="display: flex;
+    <div class="row" style="border: 1px solid black;">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+
+            <div class="container" style="display: flex;
 align-items: center;
 justify-content: center;
 height: 80vh;">
 
-    <div class="card" style="width: 26rem; height: 35rem; border: 1px dotted violet;">
-   
- 
+                <div class="card" style="width: 26rem; height: 35rem; border: 1px dotted violet;">
 
-        <img class="card-img-top" src="\{{post.picture}}" style="border: 1px solid #ffaf7b; height: 60%;">
-   
-        <div class="card-body" style="background: linear-gradient(#93a5cf, #e4efe9);">
 
-            <div class="container">
-                <div class="row">
-                {% if post.liked %}
-                    <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons" style="color:red;">favorite</i></a>
-                {% else %}
-                    <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons">favorite_border</i></a>
-                {% endif %}
-                    <a class="navbar-item" href="{% url 'post_detail_page' post.id %}">
-                        <i class="large material-icons">chat_bubble_outline</i>
-                    </a>
 
-                    <a class="navbar-item">
-                        <i class="large material-icons">near_me</i>
-                    </a>
+                    <img class="card-img-top" src="\{{post.picture}}" style="border: 1px solid #ffaf7b; height: 60%;">
 
+                    <div class="card-body" style="background: linear-gradient(#93a5cf, #e4efe9);">
+
+                        <div class="container">
+                            <div class="row">
+                                {% if post.liked %}
+                                <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons" style="color:red;">favorite</i></a> {% else %}
+                                <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons">favorite_border</i></a> {% endif %}
+                                <a class="navbar-item" href="{% url 'post_detail_page' post.id %}">
+                                    <i class="large material-icons">chat_bubble_outline</i>
+                                </a>
+
+                                <a class="navbar-item">
+                                    <i class="large material-icons">near_me</i>
+                                </a>
+
+                            </div>
+                        </div>
+                        <br>
+                        <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.total_likes}} likes</p>
+                        <a class="card-text" href="{% url 'profilepage' post.author %}" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.author }}</a>
+                        <span>{{ post.caption }}</span>
+                        <p class="card-text" style="font-family: cursive;">{{ post.date_created | timesince }} ago</p>
+                    </div>
                 </div>
             </div>
-            <br>
-            <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.total_likes}} likes</p>
-            <a class="card-text" href="{% url 'profilepage' post.author %}" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.author }}</a>
-            <span>{{ post.caption }}</span>
-            <p class="card-text" style="font-family: cursive;">{{ post.date_created | timesince }} ago</p>
         </div>
-    </div>
-</div>
-    </div>
-    <div class="col-md-5">
-        <img src="\{{post.author.picture}}" alt="Avatar" class="avatar"><span>@{{post.author.username}}</span>
-        <br>
-        <br><br><br><br><br>
+        <div class="col-md-5">
+            <img src="\{{post.author.picture}}" alt="Avatar" class="avatar"><span>@{{post.author.username}}</span>
+            <br>
+            <br><br><br><br><br> {% for comment in all_comments %} {{ comment }}
+            <h5>by</h5>
+            {{ comment.author_comment }} {% if post.author.username == request.user.username %}
+            <a class="navbar-item" href="{% url 'delete_comment_page' comment.id %}" style="color: red;">
+                <i class="large material-icons">delete</i>
+            </a>
+            {% endif %}
 
-       
-      
-        {% for comment in all_comments %}
+            <br>
+            <br> {% endfor %}
 
-        {{ comment }}
-        <br>
-        <br>
-        
-        
-        
-        
-        {% endfor %}
-
+        </div>
+        <div class="col-md-1"></div>
     </div>
-    <div class="col-md-1"></div>
-  </div>
 </div>
 
 {% endblock %}
