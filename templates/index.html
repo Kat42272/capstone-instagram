@@ -9,8 +9,10 @@
 align-items: center;
 justify-content: center;
 height: 80vh;">
-    {% comment %} <img src="\{{post.author.picture}}" style="border: 1px solid #ffaf7b; height: 60%;"> {% endcomment %}
+
     <div class="card" style="width: 26rem; height: 35rem; border: 1px dotted violet;">
+
+
 
         <img class="card-img-top" src="\{{post.picture}}" style="border: 1px solid #ffaf7b; height: 60%;">
 
@@ -21,7 +23,7 @@ height: 80vh;">
                     {% if post.liked %}
                     <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons" style="color:red;">favorite</i></a> {% else %}
                     <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons">favorite_border</i></a> {% endif %}
-                    <a class="navbar-item">
+                    <a class="navbar-item" href="{% url 'post_detail_page' post.id %}">
                         <i class="large material-icons">chat_bubble_outline</i>
                     </a>
 
