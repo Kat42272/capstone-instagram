@@ -42,6 +42,7 @@ def like_view(request, post_id):
 
 @login_required
 def post_detail_view(request, post_id):
+    
     post = PostModel.objects.get(id=post_id)
     new_comment = None
     all_comments = post.comments.all()
