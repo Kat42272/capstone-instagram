@@ -10,7 +10,7 @@ class InstaProfileModel(AbstractUser):
     url = models.URLField(null=True)
     email = models.EmailField(max_length=254)
     phone = models.CharField(max_length=15)
-    following = models.ManyToManyField("self", symmetrical=False)
+    follower = models.ManyToManyField("self", symmetrical=False, blank=True)
     # follower = models.ManyToManyField("self", symmetrical=False)
     picture = models.ImageField(
         upload_to='static/photo_upload/',
@@ -18,6 +18,13 @@ class InstaProfileModel(AbstractUser):
     email = models.EmailField(max_length=254)
     # username = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15)
+
+    def count_followers(self):
+        return self.follower.count()
+
+
+    def count_following(self):
+        return InstaProfileModel.objects.filter(follower=self).count()
 
    
 
