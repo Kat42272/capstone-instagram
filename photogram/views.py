@@ -50,6 +50,7 @@ def edit_profile_view(request, user_name):
 
 
 def profile_view(request, user_name):
+    # breakpoint()
     user_profile = models.InstaProfileModel.objects.get(username=user_name)
     posts = PostModel.objects.filter(author__username=user_name).order_by('-date_created')
     total_posts = posts.count()
@@ -58,10 +59,16 @@ def profile_view(request, user_name):
         following_list = request.user.follower.all()
     else:
         following_list = []
+        # follower_total = 0
+
+    # following_count = user_profile.following.all().count()
+    # follower_count = request.user.follower.all().count()
     return render(request, 'profile.html', {
         'posts': posts, 'total_posts': total_posts,
         'user_profile': user_profile,
         'following_list': following_list,
+        # 'follower_total': follower_total
+        # 'follower_count': follower_count
         })
 
 
@@ -79,5 +86,3 @@ class UnfollowingView(LoginRequiredMixin, TemplateView):
         user_unfollow = models.InstaProfileModel.objects.get(username=user_name)
         request.user.follower.remove(user_unfollow)
         return HttpResponseRedirect(reverse('profilepage', args=[user_unfollow.username]))
-
-

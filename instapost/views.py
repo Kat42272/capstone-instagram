@@ -73,6 +73,7 @@ def add_comment_view(request, post_id):
 
 @login_required
 def post_detail_view(request, post_id):
+    
     post = PostModel.objects.get(id=post_id)
     new_comment = None
     all_comments = post.comments.all()
@@ -95,7 +96,6 @@ def post_detail_view(request, post_id):
 def delete_comment_view(request, comment_id):
     CommentModel.objects.filter(id=comment_id).delete()
     return redirect('/')
-
 
 
 def delete_view(request, post_id):

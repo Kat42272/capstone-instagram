@@ -8,6 +8,6 @@ urlpatterns = [
     # path('dislikes/<int:dislikes_id>/', views.dislike_view, name="dislike_page"),
     path('post_detail/<int:post_id>', views.post_detail_view, name="post_detail_page"),
     path('add_comment/<int:post_id>', views.add_comment_view, name="add_comment_page"),
-    path('deletepost/<int:comment_id>', views.delete_comment_view, name="delete_comment_page"),
+    path('deletecomment/<int:comment_id>', views.delete_comment_view, name="delete_comment_page"),
     path('deletepost/<int:post_id>', views.delete_view, name="delete_page"),
 ]
