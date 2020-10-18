@@ -6,6 +6,9 @@ from comments.models import CommentModel
 from comments.forms import AddCommentForm, AddNewCommentForm
 from notification.models import NotificationModel
 from . import forms 
+from django.http import Http404
+from django.http import HttpResponseForbidden
+from django.core.exceptions import PermissionDenied
 import re
 
 @login_required
@@ -73,7 +76,6 @@ def add_comment_view(request, post_id):
 
 @login_required
 def post_detail_view(request, post_id):
-    
     post = PostModel.objects.get(id=post_id)
     new_comment = None
     all_comments = post.comments.all()
@@ -94,12 +96,21 @@ def post_detail_view(request, post_id):
 
 
 def delete_comment_view(request, comment_id):
-    CommentModel.objects.filter(id=comment_id).delete()
+    try:
+        CommentModel.objects.get(id=comment_id).delete()
+    except CommentModel.DoesNotExist:
+        raise(Http404)
     return redirect('/')
 
 
 def delete_view(request, post_id):
-    PostModel.objects.filter(id=post_id).delete()
-    return redirect('/')
+    user = PostModel.objects.get(id=post_id)
+    username = user.author.username
+    if username == request.user.username:
+        PostModel.objects.get(id=post_id).delete()
+        return redirect('/')
+    else:
+        raise PermissionDenied
+    
 
 
