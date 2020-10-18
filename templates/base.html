@@ -32,8 +32,8 @@
                             <i class="large material-icons">message</i> MESSAGE
                         </a>
 
-                            <a class="navbar-item" style="text-decoration: none">
-                                <i class="large material-icons">notifications_active</i> NOTIFICATIONS
+                            <a class="navbar-item" href="{% url 'notification_page' %}" style="text-decoration: none">
+                                <i class="large material-icons">notifications_active</i> NOTIFICATIONS: {{ notif_count }}
                             </a>
 
                             <div class="navbar-item has-dropdown is-hoverable">

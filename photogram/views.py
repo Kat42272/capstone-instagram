@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 from . import forms
 from . import models
 from instapost.models import PostModel
+from notification import views
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -14,9 +15,10 @@ def index_view(request):
     # posts = PostModel.objects.all().order_by('-date_created')
     user_posts = PostModel.objects.filter(author=request.user).order_by('-date_created')
     following_posts = PostModel.objects.filter(author__in=request.user.follower.all()).order_by('-date_created')
-    posts = user_posts | following_posts 
+    posts = user_posts | following_posts
+    notif_count = views.total_count(request) 
 
-    return render(request, 'index.html', {'posts': posts})
+    return render(request, 'index.html', {'posts': posts, 'notif_count': notif_count})
 
 
 @login_required
