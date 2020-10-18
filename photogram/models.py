@@ -19,11 +19,11 @@ class InstaProfileModel(AbstractUser):
     # username = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15)
 
-    def count_followers(self):
+    def count_following(self):
         return self.follower.count()
 
 
-    def count_following(self):
+    def count_followers(self):
         return InstaProfileModel.objects.filter(follower=self).count()
 
    

@@ -29,7 +29,6 @@ def edit_profile_view(request, user_name):
         if form.is_valid():
             data = form.cleaned_data
             print(data)
-            # user.username= data["username"]
             user.bio= data["bio"]
             user.url= data["url"]
             user.email= data["email"]
@@ -39,7 +38,6 @@ def edit_profile_view(request, user_name):
         return HttpResponseRedirect(reverse("profilepage", args=[user.username]))
 
     data = {
-            # "username": user.username,
             "bio": user.bio,
             "url": user.url,
             "email": user.email,
@@ -60,14 +58,10 @@ def profile_view(request, user_name):
         following_list = request.user.follower.all()
     else:
         following_list = []
-
-    # following_count = user_profile.following.all().count()
-    # follower_count = user_profile.follower.all().count()
     return render(request, 'profile.html', {
         'posts': posts, 'total_posts': total_posts,
         'user_profile': user_profile,
         'following_list': following_list,
-        # 'follower_count': follower_count
         })
 
 
