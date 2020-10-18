@@ -56,14 +56,16 @@ height: 80vh;">
         <div class="col-md-5">
             <img src="\{{post.author.picture}}" alt="Avatar" class="avatar"><span>@{{post.author.username}}</span>
             <br>
-            <br><br><br><br><br> {% for comment in all_comments %} {{ comment }}
-            <h5>by</h5>
-            {{ comment.author_comment }} {% if post.author.username == request.user.username %}
+            <br><br><br><br><br> {% for comment in all_comments %}
+
+
+            <a href="{% url 'profilepage' comment.author_comment %}">{{ comment.author_comment }}</a> {{ comment.body }}
+            <h4>{{ comment.created_time | timesince }} ago</h4>
+            {% if request.user.username == post.author.username %}
             <a class="navbar-item" href="{% url 'delete_comment_page' comment.id %}" style="color: red;">
                 <i class="large material-icons">delete</i>
             </a>
             {% endif %}
-
             <br>
             <br> {% endfor %}
 

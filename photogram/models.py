@@ -18,10 +18,10 @@ class InstaProfileModel(AbstractUser):
     email = models.EmailField(max_length=254)
     # username = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15)
-    following = models.ManyToManyField("self", symmetrical=False, blank=True)
+    follower = models.ManyToManyField("self", symmetrical=False, blank=True)
 
     def count_following(self):
-        return self.following.count()
+        return self.follower.count()
 
     def count_follower(self):
-        return InstaProfileModel.objects.filter(following=self).count()
+        return InstaProfileModel.objects.filter(follower=self).count()

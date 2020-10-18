@@ -32,14 +32,17 @@
                         <i class="large material-icons">message</i> MESSAGE
                     </a>
 
-                    <a class="navbar-item" style="text-decoration: none">
-                        <i class="large material-icons">notifications_active</i> NOTIFICATIONS
+                    <a class="navbar-item" href="{% url 'notification_page' %}" style="text-decoration: none">
+                        <i class="large material-icons">notifications_active</i> NOTIFICATIONS {{ notif_count }}
                     </a>
 
                     <div class="navbar-item has-dropdown is-hoverable">
                         <a class="navbar-link">
                             <img class="circle" src="\{{user.picture}}" style="border: 1px solid #f7bb97;">
                         </a>
+
+
+
 
                         <div class="navbar-dropdown">
                             <a class='navbar-item' href="{% url 'profilepage' request.user.username %}">

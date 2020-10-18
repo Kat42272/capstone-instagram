@@ -1,18 +1,19 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from .models import PostModel
+from photogram.models import InstaProfileModel
 from comments.models import CommentModel
-from comments.forms import AddCommentForm
+from comments.forms import AddCommentForm, AddNewCommentForm
+from notification.models import NotificationModel
 from . import forms 
+import re
 
 @login_required
 def add_post_view(request):
     if request.method == "POST":
         form = forms.AddPostForm(request.POST, request.FILES)
         if form.is_valid():
-            
             data = form.cleaned_data
-           
             print(data)
             new_post = PostModel.objects.create(
                 caption = data['caption'],
@@ -41,13 +42,42 @@ def like_view(request, post_id):
    
 
 @login_required
+def add_comment_view(request, post_id):
+    post = PostModel.objects.get(id=post_id)
+    if request.method == "POST":
+        form = AddNewCommentForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            print(data)
+            new_comment_post = CommentModel.objects.create(
+                body = data['body'],
+                author_comment = request.user,
+                post_comment = post
+            )
+            match_users = re.findall(r'@(\w+)', data.get('body'))
+            if match_users:
+                for match in match_users:
+                    new_match = InstaProfileModel.objects.get(username=match)
+                    if new_match:
+                        NotificationModel.objects.create(
+                            user_receive=new_match,
+                            post_receive=new_comment_post
+                        )
+            return HttpResponseRedirect(reverse("homepage"))
+            
+
+    form = AddNewCommentForm()
+    return render(request, 'generic.html', {'form': form, 'post': post})
+
+
+
+@login_required
 def post_detail_view(request, post_id):
     
     post = PostModel.objects.get(id=post_id)
     new_comment = None
     all_comments = post.comments.all()
     if request.method == "POST":
-
         form = AddCommentForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
