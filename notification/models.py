@@ -12,4 +12,4 @@ class NotificationModel(models.Model):
     new_notification = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.comment_notification.comment
+        return self.comment_notification.body
