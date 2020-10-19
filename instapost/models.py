@@ -19,5 +19,6 @@ class PostModel(models.Model):
     def total_likes(self):
         return self.like.count()
 
+    
 
    

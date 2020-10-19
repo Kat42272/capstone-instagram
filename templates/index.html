@@ -20,8 +20,11 @@ height: 80vh;">
             <div class="container">
                 <div class="row">
                     {% if post.liked %}
-                    <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons" style="color:red;">favorite</i></a> {% else %}
-                    <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons">favorite_border</i></a> {% endif %}
+                        <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons" style="color:red;">favorite</i></a>
+                     
+                    {% else %}
+                        <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="large material-icons">favorite</i></a>
+                    {% endif %}
                     <a class="navbar-item" href="{% url 'post_detail_page' post.id %}">
                         <i class="large material-icons">chat_bubble_outline</i>
                     </a>
