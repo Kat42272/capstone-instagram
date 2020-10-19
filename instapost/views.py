@@ -98,7 +98,7 @@ def delete_comment_view(request, comment_id):
     try:
         user = CommentModel.objects.get(id=comment_id)
     except CommentModel.DoesNotExist:
-        raise(Http404)
+        return render(request, '404.html')
     if user.author_comment.username == request.user.username:
         CommentModel.objects.get(id=comment_id).delete()
         return redirect('/')
@@ -110,7 +110,7 @@ def delete_post_view(request, post_id):
     try:
         user = PostModel.objects.get(id=post_id)
     except PostModel.DoesNotExist:
-        raise(Http404)
+        return render(request, '404.html')
     if user.author.username == request.user.username:
         PostModel.objects.get(id=post_id).delete()
         return redirect('/')
@@ -124,3 +124,14 @@ def delete_post_view(request, post_id):
 
 def handler500(request):
     return render(request, '500.html', status=500)
+
+# def test_500_view(request, post_id):
+#     try:
+#         user = PostModel.objects.get(id=post_id)
+#     except PostModel.DoesNotExist:
+#         raise(Http404)
+#     if user.author.username == request.user.username:
+#         PostModel.objects.get(id=post_id).delete()
+#         return redirect('/')
+#     else:
+#         raise PermissionDenied

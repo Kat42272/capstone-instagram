@@ -18,12 +18,12 @@
                 <h4 class="subtitle">{{user_profile.bio}}</h4>
                 <br> {% if user_profile.username == request.user.username %}
                 <a class="button btn-sm btn-success" href="{% url 'edit_profilepage' user.username %}">
-                Edit profile
-               </a> {% endif %}
+                    Edit profile
+                </a>
                 <div style="margin-top: 10px;">
                     <a class="btn btn-info" href="{% url 'addpost' %}">add post</a>
                 </div>
-                {% if user_profile.username != request.user.username and request.user.is_authenticated %} {% if user_profile in following_list %}
+                {% endif %} {% if user_profile.username != request.user.username and request.user.is_authenticated %} {% if user_profile in following_list %}
                 <a class="button btn-sm btn-danger" href="{% url 'unfollowing_profilepage' user_profile.username %}">
                 Unfollow
                </a> {% else %}
