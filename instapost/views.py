@@ -104,9 +104,11 @@ def delete_comment_view(request, comment_id):
 
 
 def delete_view(request, post_id):
-    user = PostModel.objects.get(id=post_id)
-    username = user.author.username
-    if username == request.user.username:
+    try:
+        user = PostModel.objects.get(id=post_id)
+    except PostModel.DoesNotExist:
+        raise(Http404)
+    if user.author.username == request.user.username:
         PostModel.objects.get(id=post_id).delete()
         return redirect('/')
     else:
