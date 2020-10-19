@@ -134,5 +134,5 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = [BASE_DIR / 'media']
 
-LOGIN_URL = "/login/"
-AUTH_USER_MODEL = 'instagram.InstaProfileModel'
+# LOGIN_URL = "/login/"
+# AUTH_USER_MODEL = 'instagram.InstaProfileModel'
