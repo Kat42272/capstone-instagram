@@ -17,7 +17,6 @@ def index_view(request):
     following_posts = PostModel.objects.filter(author__in=request.user.follower.all()).order_by('-date_created')
     posts = user_posts | following_posts
     notif_count = views.total_count(request) 
-
     return render(request, 'index.html', {'posts': posts, 'notif_count': notif_count})
 
 
@@ -49,27 +48,7 @@ def edit_profile_view(request, user_name):
     return render(request, 'edit_profile.html', {'form': form})
 
 
-# def profile_view(request, user_name):
-#     # breakpoint()
-#     user_profile = models.InstaProfileModel.objects.get(username=user_name)
-#     posts = PostModel.objects.filter(author__username=user_name).order_by('-date_created')
-#     total_posts = posts.count()
-    
-#     if request.user.is_authenticated:
-#         following_list = request.user.follower.all()
-#     else:
-#         following_list = []
-#         # follower_total = 0
 
-#     # following_count = user_profile.following.all().count()
-#     # follower_count = request.user.follower.all().count()
-#     return render(request, 'profile.html', {
-#         'posts': posts, 'total_posts': total_posts,
-#         'user_profile': user_profile,
-#         'following_list': following_list,
-#         # 'follower_total': follower_total
-#         # 'follower_count': follower_count
-#         })
 
 class ProfileView(LoginRequiredMixin, TemplateView):
 

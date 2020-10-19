@@ -32,7 +32,6 @@ def add_post_view(request):
 def like_view(request, post_id):
     print(post_id)
     post = PostModel.objects.get(id=post_id)
-    
     if post.like.filter(id=request.user.id).exists():
         post.like.remove(request.user)
         post.liked=False
@@ -97,13 +96,17 @@ def post_detail_view(request, post_id):
 
 def delete_comment_view(request, comment_id):
     try:
-        CommentModel.objects.get(id=comment_id).delete()
+        user = CommentModel.objects.get(id=comment_id)
     except CommentModel.DoesNotExist:
         raise(Http404)
-    return redirect('/')
+    if user.author_comment.username == request.user.username:
+        CommentModel.objects.get(id=comment_id).delete()
+        return redirect('/')
+    else: 
+        raise PermissionDenied
 
 
-def delete_view(request, post_id):
+def delete_post_view(request, post_id):
     try:
         user = PostModel.objects.get(id=post_id)
     except PostModel.DoesNotExist:
