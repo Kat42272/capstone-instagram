@@ -1,101 +1,78 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Instagram!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Hello Photogram!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"> {% load static %}
+    <link rel="stylesheet" href="{% static " /css/style.css/ " %}" type="text/css">
+    <link rel="stylesheet" href="{% static " css/blog.css/ " %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  </head>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item">
-   {% load static %}
-      <img src="{% static 'img/insta.png' %}" width="64" height="94">
-    </a> 
+</head>
+{% if request.user.is_authenticated %}
 
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item">
-      <i class="large material-icons">home</i>
-
-        HOME
-      </a>
-
-      <a class="navbar-item">
-      <i class="large material-icons">notifications_active</i>
-        NOTIFICATIONS
-      </a>
-
-      <a class="navbar-item" href="{% url 'profilepage' %}">
-      <i class="large material-icons">face</i>
-        PROFILE
-      </a>
-
-
-       <a class="navbar-item">
-      <i class="large material-icons">message</i>
-
-        MESSAGE
-      </a>
-
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-      <i class="large material-icons">settings</i>
-
-          SETTINGS
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Privacy
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Help
-          </a>
-        </div>
-      </div>
+<nav class="navbar" role="navigation" aria-label="main navigation" style="padding-top: 20px; background: linear-gradient(#93a5cf, #e4efe9);">
+    <div class="navbar-item">
+        <h2 style="font-family: Apple Chancery; text-shadow: 2px 2px lightblue; font-size: 40px; font-weight: bold; padding-left: 30px;">PHOTOGRAM</h2>
     </div>
-
     <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-info" href="{% url 'logoutpage' %}">
-            LOGOUT
-          </a>
-          
+        <div class="navbar-brand">
+
+            <div id="navbarBasicExample" class="navbar-menu" style="font-size: 18px; font-weight: bold;">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="{% url 'homepage' %}" style="text-decoration: none">
+                        <i class="large material-icons">home</i> HOME
+                    </a>
+
+                    <a class="navbar-item" href="{% url 'notification_page' %}" style="text-decoration: none">
+                        <i class="large material-icons">notifications_active</i> NOTIFICATIONS {{ notif_count }}
+                    </a>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            <img class="circle" src="\{{user.picture}}" style="border: 1px solid #f7bb97;">
+                        </a>
+
+
+
+
+                        <div class="navbar-dropdown">
+                            <a class='navbar-item' href="{% url 'profilepage' request.user.username %}">
+            Profile
+        </a>
+                            <a class='navbar-item' href="{% url 'edit_profilepage' user.username %}">
+            Settings
+        </a>
+                            <hr class="navbar-divider">
+                            <a class='navbar-item' href="{% url 'logoutpage' %}">
+            Log Out
+        </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
+
+        {% endif %}
 </nav>
-  <section class="section">
-    <div class="container">
-  <body>
- 
-      {% block content %}
-    {% endblock %}
-        
+
+<body>
+
+
+    <div>
+
+        <section class="section">
+
+
+            {% block content %} {% endblock %}
+        </section>
     </div>
-  </section>
-  </body>
+</body>
+
 </html>

@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from decouple import config
 
 
 
@@ -22,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'zyyf$+w-e7z-q$8q771*o+#rdo!v87grmu20q$1&b&%nw-8g=6'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool, default=True)
 
 ALLOWED_HOSTS = []
 
@@ -39,12 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'instagram',
-    'authentication', 
+    'photogram',
+    'authentication',
     'notification',
-    'comments', 
+    'comments',
     'instapost'
-    
 ]
 
 MIDDLEWARE = [
@@ -69,7 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages',               
             ],
         },
     },
@@ -126,11 +127,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static/']
+# STATIC_ROOT = [BASE_DIR / 'static']
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
+
 
 
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = [BASE_DIR / 'media']
+# MEDIAFILES_DIRS = (os.path.join(BASE_DIR, "media/"),)
 
 LOGIN_URL = "/login/"
-AUTH_USER_MODEL = 'instagram.InstaProfileModel'
+AUTH_USER_MODEL = 'photogram.InstaProfileModel'
