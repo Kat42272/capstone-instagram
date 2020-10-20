@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="center" style="position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  padding: 10px;">
+
+
+
+<div class="card text-center" style="width: 24rem; border: 1px solid green; background-color: lightpink;">
+ {% load static %}
+  <img src="{% static 'img/giphy.gif' %}" class="card-img-top" alt="...">
+  <div class="card-body">
+    
+        <form action="" method="post">
+        {% csrf_token %}
+            <div class="field">
+                <label class="label">Displayname</label>
+                <p class="control has-icons-left">
+                    {{ form.displayname }}
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </p>
+            </div>
+
+            <div class="field">
+                <label class="label">Username</label>
+                <p class="control has-icons-left">
+                    {{ form.username }}
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </p>
+            </div>
+            
+
+            <div class="field">
+                <label class="label">Password</label>
+                <p class="control has-icons-left">
+                    {{ form.password }}
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                </p>
+            </div>
+                 <a class="btn btn-info btn-sm" href="{% url 'loginpage' %}">
+                    GO BACK
+                   </a>  <span>OR</span> 
+                   <input class="btn btn-info btn-sm" type="submit" value="SUBMIT"> 
+
+         </form> 
+
+
+  </div>
+  
+</div>
+</div
+
+
+
+
+
+
+{% endblock %}
