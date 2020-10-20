@@ -1,0 +1,85 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+
+
+<div class="center" style="position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  ">
+    <div>
+        <div class="card mb-3 text-center" style="width: 800px; border: 1px solid green; background-color: lightgrey;">
+            <div class="row no-gutters">
+                <div class="col-md-4 bg-info">
+                    {% load static %}
+                    <img src="{% static 'img/kitten.gif' %}" class="card-img" style="height: 100%;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+
+                        <form enctype="multipart/form-data" action="" method="post">
+                            {% csrf_token %}
+                            <div class="field">
+                                <label class="label">Bio</label>
+                                <p class="control has-icons-left">
+                                    {{ form.bio}}
+                                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                                </p>
+                            </div>
+
+
+                            <div class="field">
+                                <label class="label">URL</label>
+                                <p class="control has-icons-left">
+                                    {{ form.url }}
+                                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                                </p>
+                            </div>
+
+                            <div class="field">
+                                <label class="label">Email</label>
+                                <p class="control has-icons-left">
+                                    {{ form.email }}
+                                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                                </p>
+                            </div>
+
+
+                            <div class="field">
+                                <label class="label">Phone Number</label>
+                                <p class="control has-icons-left">
+                                    {{ form.phone }}
+                                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                                </p>
+                            </div>
+
+
+                            <div class="field">
+                                <label class="label">Upload Photo</label>
+                                <p class="control has-icons-left">
+                                    {{ form.picture }}
+                                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                                </p>
+                            </div>
+                            <input class="btn btn-danger btn-sm" type="submit" value="SUBMIT">
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

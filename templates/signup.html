@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="container" style="margin-top:170px;">
+    <div class="row">
+        <div class="col-md-11 mt-60 mx-md-auto">
+            <div class="login-box bg-white pr-lg-5 pr-0">
+                <div class="row no-gutters align-items-center">
+                    <div class="col-md-6 order-md-last">
+                        <div class="form-wrap bg-white">
+                            <h3 class="btm-sep pb-3 mb-5">Register</h3>
+                            <form action="" method="post">
+                                {% csrf_token %}    
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-account"></span>
+                                            <input type="text" id="displayname" name="displayname" class="form-control" placeholder="Displayname">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-email"></span>
+                                            <input type="text" id="username" name="username" class="form-control" placeholder="Username">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group position-relative">
+                                            <span class="zmdi zmdi-lock"></span>
+                                            <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" id="submit" class="btn btn-lg btn-custom btn-dark btn-block">
+                                            Sign Up
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6 order-md-first">
+                        <div class="content text-center">
+                            <div class="border-bottom pb-5 mb-5">
+                                <h3 class="c-black">Already have an account?</h3>
+                                <a href="{% url 'loginpage' %}" class="btn btn-md btn-primary">Log in</a>
+                            </div>
+                            <h5 class="c-black mb-4 mt-n1">Or Sign Up With</h5>
+                            <div class="socials">
+                                <a href="#" class="zmdi zmdi-facebook"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                                <a href="#" class="zmdi zmdi-twitter"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+                                <a href="#" class="zmdi zmdi-google"><i class="fa fa-google fa-2x" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

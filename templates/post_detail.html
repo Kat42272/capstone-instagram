@@ -1,0 +1,69 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+
+<div class="container" style="margin-top: 130px; width:50%; height:30%">
+  <div class="row">
+
+    <div class="col-md-8">
+      <img class="img-fluid" src="\{{post.picture}}">
+    </div>
+
+    <div class="col-md-4" style="background: lightgrey; overflow: auto; max-height: 25rem;">
+        <img src="\{{post.author.picture}}" class="rounded-circle"  width="35" height="35"> <span style="font-size: 20px;"><a class="card-text" href="{% url 'profilepage' post.author %}">@{{post.author.username}}</a></span>
+          <span style="font-size: 20px;">{{ post.caption }}</span>
+      {% for comment in all_comments %}
+      <ul>
+        <li> <a href="{% url 'profilepage' comment.author_comment %}">{{ comment.author_comment }}</a> {{ comment.body }}
+            <h5>{{ comment.created_time | timesince }} ago</h5>
+            {% if request.user.username == post.author.username %}
+            <a class="navbar-item" href="{% url 'delete_comment_page' comment.id %}" style="color: red;">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            </a>
+            {% endif %}
+            </li>
+ 
+      </ul>
+      {% endfor %}
+    </div>
+
+  </div>
+  </div>
+  {% comment %} <!-- /.row -->
+
+  <!-- Related Projects Row -->
+ 
+
+  <div class="row" style="margin-top: 30px;">
+
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#">
+            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+          </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#">
+            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+          </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#">
+            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+          </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6 mb-4">
+      <a href="#">
+            <img class="img-fluid" src="http://placehold.it/500x300" alt="">
+          </a>
+    </div>
+
+  </div>
+  <!-- /.row -->
+
+</div> {% endcomment %}
+
+
+
+{% endblock %}

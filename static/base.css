@@ -1,0 +1,17 @@
+#sticky {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+}
+
+
+.row a + a {
+    padding-left: 2em ;
+}
+
+li {
+    font-size: 20px;
+    list-style: none;
+    
+}

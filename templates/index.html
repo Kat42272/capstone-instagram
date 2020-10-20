@@ -1,0 +1,77 @@
+{% extends 'base.html' %} {% load static %} {% block content %} 
+{% if request.user.is_authenticated %}
+
+<div style="margin-top: 100px;" id="sticky">
+    <a class="btn btn-info" href="{% url 'addpost' %}">
+        Add Post</a>
+</div>
+{% for post in posts %}
+
+<div class="container"  id={{post.id}} style="display: flex;
+align-items: center;
+justify-content: center;
+margin-top: 150px;">
+    <div class="card" style="width: 28rem; height: 45rem; border: 1px solid lightblue;" >
+
+        <img class="card-img-top" src="\{{post.picture}}" style="height: 60%;">
+
+        <div class="card-body" style="background: lightgrey;">
+
+            <div class="container">
+                <div class="row">
+                    {% if post.liked %}
+                        <a href="{% url 'like_page' post.id %}"><i class="fa fa-heart fa-2x" aria-hidden="true" style="color:red;"></i>
+</a>
+                     
+                    {% else %}
+                        <a href="{% url 'like_page' post.id %}" class="navbar-item"><i class="fa fa-heart fa-2x" aria-hidden="true"></i>
+</a>
+                    {% endif %}
+                    <a class="navbar-item" href="{% url 'post_detail_page' post.id %}">
+                        <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                    </a>
+
+                    <a class="navbar-item" href="{% url 'notification_page' %}">
+                        <i class="fa fa-bell fa-2x" aria-hidden="true"></i>
+                    </a>
+
+                    {% if post.author.username == request.user.username %}
+                        <a class="navbar-item" href="{% url 'delete_page' post.id %}" style="color: red; padding-left: 16em;">
+                            <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+                        </a>
+                    {% endif %}
+
+                </div>
+            </div>
+            <br>
+
+            <div style="overflow: auto; max-height: 118px;">
+            <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.total_likes}} likes</p>
+            <a class="card-text" href="{% url 'profilepage' post.author %}" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold;">{{ post.author }}</a>
+            <span>{{ post.caption }}</span>
+            <p class="card-text" style="font-family: cursive;">{{ post.date_created | timesince }} ago</p>
+         
+           {% for comment in post.comments.all %}
+           <span>{{ comment.author_comment.username }}</span>
+           <p class="card-text" style="font-family: cursive;">{{ comment.body }} - {{ comment.created_time | timesince }}</p>
+{% endfor %}
+  </div>
+            <div class="row comment-box-main p-3 rounded-bottom">
+                <div class="col-md-9 col-sm-9 col-9 pr-0 comment-box">
+                    <form action="/post_comment_home/{{post.id}}/" method="post">
+                        {% csrf_token %}
+                        {{ comment_form.body}}
+                        <!-- <input class="btn btn-primary" type="submit" value="SUBMIT"> -->
+                        {% comment %} <input type="submit" class="form-control" placeholder="comment ...." /> {% endcomment %}
+                    </div>
+                    <div class="col-md-3 col-sm-2 col-2 pl-0 text-center send-btn">
+                        <input type="submit" value="send" class="btn btn-info">
+                    </div>
+                </form>
+         
+        </div>
+        </div>
+          
+    </div>
+</div>
+<br> {% endfor %} {% endif %} {% endblock %}

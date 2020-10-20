@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for notif in new_notif %}
+<ul>
+    <li>{{ notif.author_comment }}</li>
+    <li>{{ notif.body  }}</li>
+</ul>
+    
+    
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+
+<div class="container" style="padding-top: 100px; margin-left:27%;">
+ <div class="col-lg-8">
+        <div class="panel profile-cover">
+            <div class="profile-cover__img">
+                <img src="\{{user_profile.picture}}"/>
+                <h3 class="h3">{{user_profile.username}}</h3>
+                {% comment %} <h3 class="h3">{{user_profile.bio}}</h3> {% endcomment %}
+            </div>
+            <div class="profile-cover__action bg--img" data-overlay="0.3">
+            {% if user_profile.username != request.user.username and request.user.is_authenticated %} {% if user_profile in following_list %}
+                <a class="btn btn-rounded btn-info" href="{% url 'unfollowing_profilepage' user_profile.username %}">
+                    <i class="fa fa"></i>
+                    <span>UnFollow</span>
+                </a>
+            {% else %}
+                <a class="btn btn-rounded btn-info" href="{% url 'following_profilepage' user_profile.username %}">
+                    <i class="fa fa-plus"></i>
+                    <span>Follow</span>
+                </a>
+            {% endif %}
+            {% endif %}
+            {% if user_profile.username == request.user.username %}
+                <a class="btn btn-rounded btn-info" href="{% url 'edit_profilepage' user.username %}">
+                    <i class="fa fa-eye"></i>
+                    <span>Edit Profile</span>
+                </a>
+                <a class="btn btn-rounded btn-info" href="{% url 'addpost' %}">
+                    <i class="fa fa-camera-retro"></i>
+                    <span>Add Post</span>
+                </a>
+            {% endif %}
+            </div>
+            <div class="profile-cover__info">
+                <ul class="nav">
+                    <li><strong>{{ total_posts }}</strong>Posts</li>
+                    <li><strong>{{ user_profile.count_follower }}</strong>Followers</li>
+                    <li><strong>{{ user_profile.count_following }}</strong>Following</li>
+                </ul>
+            </div>
+        </div>
+
+
+<div class="container">
+    <div class="row"> 
+        <div class="column" > 
+            {% for post in posts %}
+        
+          <img src="\{{post.picture}}"  style="  width: 220px;
+  height: 220px; margin: 7px; border: 1px solid black;">
+       
+       {% endfor %} 
+      </div> 
+    </div>
+</div>
+</div>
+</div>
+</div> 
+    
+{% endblock %}
