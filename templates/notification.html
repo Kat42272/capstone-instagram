@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
-
 {% block content %}
+<div class="container" style="margin-top: 100px; color: white; z-index: 0;">
 
 {% for notif in new_notif %}
 <ul>
     <li>{{ notif.author_comment }}</li>
     <li>{{ notif.body  }}</li>
-</ul>
-    
-    
-{% endfor %}
+</ul> 
 
+{% endfor %}
 {% endblock %}
+
+    
+    

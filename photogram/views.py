@@ -17,13 +17,15 @@ import re
 @login_required(login_url="loginpage")
 def index_view(request):
     comment_form = AddNewCommentForm()
+    all_users = models.InstaProfileModel.objects.all()
     # posts = PostModel.objects.all().order_by('-date_created')
     user_posts = PostModel.objects.filter(author=request.user).order_by('-date_created')
     following_posts = PostModel.objects.filter(author__in=request.user.follower.all()).order_by('-date_created')
     posts = user_posts | following_posts
     notif_count = views.total_count(request) 
+    following_list = request.user.follower.all()
    
-    return render(request, 'index.html', {'posts': posts, 'notif_count': notif_count, 'comment_form': comment_form})
+    return render(request, 'index.html', {'posts': posts, 'notif_count': notif_count, 'comment_form': comment_form, 'all_users': all_users, 'following_list': following_list})
 
 @login_required
 def post_comment_view(request, post_id):
@@ -82,23 +84,22 @@ def edit_profile_view(request, user_name):
     return render(request, 'edit_profile.html', {'form': form})
 
 
-def profile_view(request, user_name):
-    # breakpoint()
-    user_profile = models.InstaProfileModel.objects.get(username=user_name)
-    posts = PostModel.objects.filter(author__username=user_name).order_by('-date_created')
-    total_posts = posts.count()
+class ProfileView(LoginRequiredMixin, TemplateView):
+    def get(self, request, user_name):
+        user_profile = models.InstaProfileModel.objects.get(username=user_name)
+        posts = PostModel.objects.filter(author__username=user_name).order_by('-date_created')
+        total_posts = posts.count()
     
-    if request.user.is_authenticated:
-        following_list = request.user.follower.all()
-    else:
-        following_list = []
-       
-    return render(request, 'profile.html', {
-        'posts': posts, 'total_posts': total_posts,
-        'user_profile': user_profile,
-        'following_list': following_list,
-       
-        })
+        if request.user.is_authenticated:
+            following_list = request.user.follower.all()
+        else:
+            following_list = []
+        return render(request, 'profile.html', {
+            'posts': posts, 'total_posts': total_posts,
+            'user_profile': user_profile,
+            'following_list': following_list,
+            })
+
 
 
 class FollowingView(LoginRequiredMixin, TemplateView):

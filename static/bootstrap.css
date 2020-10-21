@@ -4512,6 +4512,8 @@ input[type="button"].btn-block {
 
 .nav-link:hover, .nav-link:focus {
   text-decoration: none;
+  transform: scale(1.5);
+  
 }
 
 .nav-link.disabled {

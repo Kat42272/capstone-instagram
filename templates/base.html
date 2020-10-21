@@ -48,11 +48,19 @@
                   </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'homepage' %}">HOME <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" class="post-icon" href="{% url 'homepage' %}"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a>
                   </li>
+                  
+                  {% if notif_count > 0 %}
                   <li class="nav-item ">
-                  <a class="nav-link" href="{% url 'notification_page' %}">NOTIFICATIONS</a>
+                  <a class="nav-link" class="post-icon" href="{% url 'notification_page' %}"><i class="fa fa-bell fa-lg" aria-hidden="true"></i><span id="notifspan" style="color: #fff;">{{ notif_count }}</span></a>
                   </li>
+                  {% else %}
+                  <li class="nav-item ">
+                  <a class="nav-link" class="post-icon" href="{% url 'notification_page' %}"><i class="fa fa-bell fa-lg" aria-hidden="true"></i><span id="notifspan"></span></a>
+                  </li>
+                  {% endif %}
+                 
         
             </ul>
         </div>

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import NotificationModel
 
-# Create your views here.
+
 
 @login_required(login_url="loginpage")
 def notification_view(request):
